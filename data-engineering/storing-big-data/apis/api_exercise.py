@@ -73,6 +73,29 @@ def parse_accuweather_data(json_data):
     # function to display them. For example, you could try and extract 
     # the Temperature or the RealFeelTemperature values from the 
     # AccuWeather data payload.
+    import requests
+
+    # Replace 'YOUR_API_KEY' with the actual API key you obtained
+    api_key = '8lhOI02dPXUx0qP3eAZ2HqFa1rcf0xTG'
+
+    # Replace 'LOCATION_ID' with the actual location ID you obtained
+    location_id = '305684'
+
+    # AccuWeather API endpoint for current conditions
+    api_endpoint = f'http://dataservice.accuweather.com/currentconditions/v1/{location_id}?apikey={api_key}'
+
+    # Make the API request
+    response = requests.get(api_endpoint)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the JSON response
+        weather_data = response.json()
+
+        # Print the entire JSON response
+        print(weather_data)
+    else:
+        print(f"Error: {response.status_code}")
     # =============================================================
 
     print ("*** The functionality to parse the received JSON data has not been implemented yet. Please do so! ***")
